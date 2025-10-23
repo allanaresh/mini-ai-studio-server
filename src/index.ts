@@ -8,10 +8,11 @@ dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 5000;
+const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",") || [];
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: allowedOrigins,
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
